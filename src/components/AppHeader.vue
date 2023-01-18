@@ -9,11 +9,18 @@
       class="mx-2"
       >{{ item.title }}</router-link
     >
+    <button v-if="isLoggedIn" class="mx-2" @click="logout">Logout</button>
+     <button v-else class="mx-2" @click="$emit('open-login-modal')">Login</button>
+     
   </nav>
+ 
 </template>
 
 <script>
+import { getAuth, signOut } from "firebase/auth";
+import appCredential from "../utilities/firebase";
 export default {
+  props: {"isLoggedIn": {type: Boolean, required: false}},
   data() {
     return {
       list: [
@@ -36,6 +43,20 @@ export default {
       ],
     };
   },
+  methods:{
+    logout(){
+      
+
+const auth = getAuth(appCredential);
+signOut(auth).then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+  console.log(error)
+});
+
+    }
+  }
 };
 </script>
 
