@@ -93,11 +93,9 @@ export default {
       return new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
     },
     startDay() {
-      console.log("start", this.currentMonth, this.currentYear);
       return new Date(this.currentYear, this.currentMonth, 1).getDay();
     },
     next() {
-      console.log(this.currentMonth);
       if (this.currentMonth === 11) {
         this.currentYear++;
         this.currentMonth = 0;
