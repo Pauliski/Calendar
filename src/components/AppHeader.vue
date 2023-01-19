@@ -40,6 +40,10 @@ export default {
           title: "Slider",
           to: "/slider",
         },
+        {
+          title: "Calculator",
+          to: "/calculator",
+        },
       ],
     };
   },
