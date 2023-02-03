@@ -20,15 +20,22 @@
 
 <script>
 import { marked } from "marked";
-import debounce from "../utilities/mixins/debounce";
+
+import useDebounce from "../utilities/composition/useDebounce";
 export default {
-  mixins: [debounce],
+  setup() {
+ 
+    
+  },
   data() {
     return {
       text: "",
+      debounce: "",
     };
   },
   mounted() {
+     const {debounce} =  useDebounce();
+    this.debounce = debounce
     this.$refs.newMarkdownRef.focus();
   },
   computed: {

@@ -1,12 +1,11 @@
 <template>
-  <AppHeader :isLoggedIn="isLoggedIn" @open-login-modal="isLoginOpen = true" />
+  <AppHeader />
   <div class="w-full flex">
     <router-view></router-view>
   </div>
   <teleport to="body">
-    <LoginModal v-if="isLoginOpen" @close-login="isLoginOpen = false" />
+    <LoginModal  />
   </teleport>
-  
 </template>
 
 <script>
@@ -14,31 +13,22 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import AppHeader from "./components/AppHeader";
 import LoginModal from "./components/LoginModal";
 
-import appCredential from "./utilities/firebase"
+import appCredential from "./utilities/firebase";
 export default {
-   data(){
-        return{
-            isLoginOpen: false,
-            isLoggedIn: false,
-            authUser: [],
-        }
-    },
-    mounted(){
-
-
-const auth = getAuth(appCredential);
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // const uid = user.uid;
-    this.isLoggedIn = true;
-    this.authUser = user;
-    // ...
-  } else {
-    this.isLoggedIn = false;
-    this.authUser = {}
-  }
-});
-    },
+  mounted() {
+    const auth = getAuth(appCredential);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // const uid = user.uid;
+        this.$store.commit("setIsloggedIn", true);
+        this.$store.commit("setAuthUser", user);
+        // ...
+      } else {
+        this.$store.commit("setIsloggedIn", false);
+        this.$store.commit("setAuthUser", {});
+      }
+    });
+  },
   components: { AppHeader, LoginModal },
 };
 </script>

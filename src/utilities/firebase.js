@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getDatabase, ref } from "firebase/database";
 // import {getAuth} from "firebase/auth";
 
 const firebaseConfig = {
@@ -13,4 +14,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // getAuth(app);
+const db = getDatabase(app);
+export const chatRef = ref(db, "chats");
 export default app;

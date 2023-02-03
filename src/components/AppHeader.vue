@@ -10,17 +10,14 @@
       >{{ item.title }}</router-link
     >
     <button v-if="isLoggedIn" class="mx-2" @click="logout">Logout</button>
-     <button v-else class="mx-2" @click="$emit('open-login-modal')">Login</button>
-     
+    <button v-else class="mx-2" @click="openLogin">Login</button>
   </nav>
- 
 </template>
 
 <script>
 import { getAuth, signOut } from "firebase/auth";
 import appCredential from "../utilities/firebase";
 export default {
-  props: {"isLoggedIn": {type: Boolean, required: false}},
   data() {
     return {
       list: [
@@ -44,23 +41,38 @@ export default {
           title: "Calculator",
           to: "/calculator",
         },
+        {
+          title: "Modal",
+          to: "/modal",
+        },
+        {
+          title: "Chat",
+          to: "/chat",
+        },
       ],
     };
   },
-  methods:{
-    logout(){
-      
-
-const auth = getAuth(appCredential);
-signOut(auth).then(() => {
-  // Sign-out successful.
-}).catch((error) => {
-  // An error happened.
-  console.log(error)
-});
-
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.isLoggedIn;
+    },
+  },
+  methods: {
+    logout() {
+      const auth = getAuth(appCredential);
+      signOut(auth)
+        .then(() => {
+          // Sign-out successful.
+        })
+        .catch((error) => {
+          // An error happened.
+          console.log(error);
+        });
+    },
+    openLogin(){
+      this.$store.commit('setLoginModal', true)
     }
-  }
+  },
 };
 </script>
 
