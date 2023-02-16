@@ -7,6 +7,7 @@ import Slider from "./pages/Slider";
 import Calculator from "./pages/Calculator";
 import Modal from "./pages/ReuseableModal";
 import Chat from "./pages/Chat";
+import UserCrud from "./pages/UserCrud"
 import store from "./store/index";
 
 const routes = [
@@ -17,10 +18,11 @@ const routes = [
   { path: "/slider", component: Slider },
   { path: "/calculator", component: Calculator },
   { path: "/modal", component: Modal },
+  { path: "/user-crud", component: UserCrud },
   {
     path: "/chat",
     component: Chat,
-    meta: {middleware: 'auth'},
+    meta: { middleware: "auth" },
   },
 ];
 

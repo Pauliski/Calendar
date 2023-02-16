@@ -22,6 +22,9 @@
 
 <script>
 export default {
+  props:{
+    title:{type: String, required: false}
+  },
   setup( _, { emit }) {
     function close() {
       emit("close");

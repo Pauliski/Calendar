@@ -52,26 +52,30 @@
         <fieldset class="border rounded p-3 md:w-1/2">
           <legend class="font-bold">Custom Search</legend>
           <input
-          type="number"
-          v-model.lazy="customMonth"
-          class="w-1/3 md:w-1/3 px-2 py-1 border rounded"
-          placeholder="Enter month"
-          min="1"
-          max="12"
-          required
-        />
-        <input
-          type="number"
-          v-model.lazy="customYear"
-          class="w-1/3 md:w-1/3 px-2 py-1 mx-2 border rounded"
-          placeholder="Enter Year"
-          min="1900"
-          max="9999"
-          required
-        />
-        <button type="submit" class="px-3 py-1 border rounded bg-blue-600 text-white font-bold">Go To</button>
+            type="number"
+            v-model.lazy="customMonth"
+            class="w-1/3 md:w-1/3 px-2 py-1 border rounded"
+            placeholder="Enter month"
+            min="1"
+            max="12"
+            required
+          />
+          <input
+            type="number"
+            v-model.lazy="customYear"
+            class="w-1/3 md:w-1/3 px-2 py-1 mx-2 border rounded"
+            placeholder="Enter Year"
+            min="1900"
+            max="9999"
+            required
+          />
+          <button
+            type="submit"
+            class="px-3 py-1 border rounded bg-blue-600 text-white font-bold"
+          >
+            Go To
+          </button>
         </fieldset>
-        
       </form>
     </section>
   </div>
@@ -122,10 +126,10 @@ export default {
         ? "text-white rounded-full bg-blue-600"
         : "";
     },
-    handleCustom(){
-      this.currentMonth = this.customMonth - 1
-      this.currentYear = this.customYear
-    }
+    handleCustom() {
+      this.currentMonth = this.customMonth - 1;
+      this.currentYear = this.customYear;
+    },
   },
   computed: {
     currentMonthName() {

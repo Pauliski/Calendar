@@ -1,6 +1,13 @@
 <template>
   <nav
-    class="w-full bg-gradient-to-r from-blue-800 to-blue-600 text-white px-4 py-2"
+    class="w-full bg-gradient-to-r from-blue-800 to-blue-600 block sm:hidden text-white px-4 py-2 items-center "
+  >
+    <button class="w-10 h-10">
+      <img src="../assets/hambu.png" alt="hamburger" class="w-full" />
+    </button>
+  </nav>
+  <nav
+    class="w-full bg-gradient-to-r from-blue-800 to-blue-600 text-white px-4 py-2 flex sm:items-center flex-col sm:flex-row"
   >
     <router-link
       v-for="item in list"
@@ -49,6 +56,10 @@ export default {
           title: "Chat",
           to: "/chat",
         },
+        {
+          title: "User Crud",
+          to: "/user-crud",
+        },
       ],
     };
   },
@@ -69,9 +80,9 @@ export default {
           console.log(error);
         });
     },
-    openLogin(){
-      this.$store.commit('setLoginModal', true)
-    }
+    openLogin() {
+      this.$store.commit("setLoginModal", true);
+    },
   },
 };
 </script>
